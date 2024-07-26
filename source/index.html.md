@@ -1,245 +1,718 @@
 ---
-title: API Reference
-
-language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
-
-search: true
-
+title: NIAGADS API v0.0.1
+language_tabs:
+  - python: Python
+  - r: R
+  - perl: Perl
+  - ruby: Ruby
+language_clients:
+  - python: ""
+  - r: ""
+  - perl: ""
+  - ruby: ""
+toc_footers: []
+includes: 
+  - filters
+  - schemas
+search: false
 code_clipboard: true
+highlight_theme: darkula
+headingLevel: 2
+generator: widdershins v4.0.1
 
-meta:
-  - name: description
-    content: Documentation for the Kittn API
 ---
 
-# Introduction
+<h1 id="niagads-api">NIAGADS API v0.0.1</h1>
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+an application programming interface (API) that provides programmatic access to Open-Access resources at the NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Base URLs:
 
-# Authentication
+* <a href="/api">/api</a>
 
-> To authorize, use this code:
+<a href="http://example.com/terms/">Terms of service</a>
+Email: <a href="mailto:help@niagads.org">NIAGADS Support</a> 
+License: <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>
 
-```ruby
-require 'kittn'
+<h1 id="niagads-api-default">Default</h1>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+## Read Root
 
-```python
-import kittn
+<a id="opIdread_root__get"></a>
 
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+> Code samples
 
 ```python
-import kittn
+import requests
+headers = {
+  'Accept': 'application/json'
+}
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+r = requests.get('/api/', headers = headers)
+
+print(r.json())
+
 ```
 
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
 ```
 
-```javascript
-const kittn = require('kittn');
+`GET /`
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+> Example responses
 
-> The above command returns JSON structured like this:
+> 200 Response
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+null
 ```
 
-This endpoint retrieves all kittens.
+<h3 id="read-root-responses">Responses</h3>
 
-### HTTP Request
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+<h3 id="read-root-responseschema">Response Schema</h3>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+This operation does not require authentication
 </aside>
 
-## Get a Specific Kitten
+<h1 id="niagads-api-filer-functional-genomics-repository">FILER Functional Genomics Repository</h1>
 
-```ruby
-require 'kittn'
+## About
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+<a id="opIdabout_filer__get"></a>
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+> Code samples
 
 ```python
-import kittn
+import requests
+headers = {
+  'Accept': 'application/json'
+}
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+r = requests.get('/api/filer/', headers = headers)
+
+print(r.json())
+
 ```
 
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
 ```
 
-```javascript
-const kittn = require('kittn');
+`GET /filer/`
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+about the FILER Functional Genomics Repository
 
-> The above command returns JSON structured like this:
+> Example responses
+
+> 200 Response
 
 ```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+null
 ```
 
-This endpoint deletes a specific kitten.
+<h3 id="about-responses">Responses</h3>
 
-### HTTP Request
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
 
-`DELETE http://example.com/kittens/<ID>`
+<h3 id="about-responseschema">Response Schema</h3>
 
-### URL Parameters
+<aside class="success">
+This operation does not require authentication
+</aside>
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+## Get Track Metadata
 
+<a id="opIdGet_track_metadata_filer_track_record__track__get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/track/record/{track}', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/track/record/{track}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/track/record/{track}`
+
+retrieve metadata for the functional genomics `track` specified in the path
+
+<h3 id="get-track-metadata-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|track|path|string|true|FILER track identifier|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="get-track-metadata-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="get-track-metadata-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Get Metadata For Multiple Tracks
+
+<a id="opIdGet_metadata_for_multiple_tracks_filer_track_record_get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/track/record', params={
+  'track': 'string'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/track/record',
+  params: {
+  'track' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/track/record`
+
+retrieve metadata for one or more functional genomics tracks from FILER
+
+<h3 id="get-metadata-for-multiple-tracks-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|track|query|string|true|comma separated list of one or more FILER track identifiers|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="get-metadata-for-multiple-tracks-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="get-metadata-for-multiple-tracks-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Get Track Data
+
+<a id="opIdGet_track_data_filer_track_data__track__get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/track/data/{track}', params={
+  'loc': 'chr19:10000-40000'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/track/data/{track}',
+  params: {
+  'loc' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/track/data/{track}`
+
+retrieve functional genomics track data from FILER in the specified region
+
+<h3 id="get-track-data-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|track|path|string|true|FILER track identifier|
+|loc|query|string|true|genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="get-track-data-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="get-track-data-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Get Data From Multiple Tracks
+
+<a id="opIdGet_data_from_multiple_tracks_filer_track_data_get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/track/data', params={
+  'track': 'string',  'loc': 'chr19:10000-40000'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/track/data',
+  params: {
+  'track' => 'string',
+'loc' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/track/data`
+
+retrieve data from one or more functional genomics tracks from FILER in the specified region
+
+<h3 id="get-data-from-multiple-tracks-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|track|query|string|true|comma separated list of one or more FILER track identifiers|
+|loc|query|string|true|genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="get-data-from-multiple-tracks-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="get-data-from-multiple-tracks-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Track Metadata Text Search
+
+<a id="opIdTrack_Metadata_Text_Search_filer_query_tracks_get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/query/tracks', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/query/tracks',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/query/tracks`
+
+find functional genomics tracks using category filters or by a keyword search againts all text fields in the track metadata
+
+<h3 id="track-metadata-text-search-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|keyword|query|any|false|search all text fields by keyword|
+|assembly|query|any|false|reference genome build (assembly)|
+|filter|query|string|false|filter expresssion string|
+|limit|query|any|false|maximum number of results to return; please note that `pagination is not yet implemented`|
+|page|query|any|false|current page; please note that `pagination is not yet implemented`|
+|countOnly|query|any|false|return result size (count) only|
+|idsOnly|query|any|false|return only the IDS (no annotation or metadata) for matching records|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="track-metadata-text-search-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="track-metadata-text-search-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Get Data From Tracks Meeting Search Criteria
+
+<a id="opIdGet_Data_from_Tracks_meeting_Search_Criteria_filer_query_region_get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/query/region', params={
+  'loc': 'chr19:10000-40000'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/query/region',
+  params: {
+  'loc' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/query/region`
+
+retrieve data in a region of interest from all functional genomics tracks whose metadata meets the search or filter criteria
+
+<h3 id="get-data-from-tracks-meeting-search-criteria-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|keyword|query|any|false|search all text fields by keyword|
+|assembly|query|any|false|reference genome build (assembly)|
+|filter|query|string|false|filter expresssion string|
+|loc|query|string|true|genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end|
+|limit|query|any|false|maximum number of results to return; please note that `pagination is not yet implemented`|
+|page|query|any|false|current page; please note that `pagination is not yet implemented`|
+|countOnly|query|any|false|return result size (count) only|
+|idsOnly|query|any|false|return only the IDS (no annotation or metadata) for matching records|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="get-data-from-tracks-meeting-search-criteria-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="get-data-from-tracks-meeting-search-criteria-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Helper: Allowable Filter Fields
+
+<a id="opIdHelper__Allowable_Filter_Fields_filer_query_filter_get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/query/filter', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/query/filter',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/query/filter`
+
+get list of allowable fields for filter-based searches of FILER track metadata
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="helper:-allowable-filter-fields-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+
+<h3 id="helper:-allowable-filter-fields-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Helper: Filter Field Values
+
+<a id="opIdHelper__Filter_Field_Values_filer_query_filter__field__get"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/api/filer/query/filter/{field}', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/api/filer/query/filter/{field}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /filer/query/filter/{field}`
+
+get list of values and associated FILER track counts for each allowable filter field
+
+<h3 id="helper:-filter-field-values-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|field|path|string|true|filter field; please note that there are too many possible values for `biosample`; the returned result summarizes over broad `tissue categories` only|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|field|biosample|
+|field|antibody|
+|field|assay|
+|field|feature|
+|field|analysis|
+|field|classification|
+|field|category|
+|field|data_source|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="helper:-filter-field-values-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="helper:-filter-field-values-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
