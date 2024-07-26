@@ -22,7 +22,7 @@ Each knowledgebase provides a <em>Helper</em> <code>/query/filter</code> endpoin
 
 ## Complex expressions
 
-Filter expressions can be combind using the logical conjunction operator <code>and</code>. For example:
+Filter expressions can be combined using the logical conjunction operator <code>and</code>. For example:
 
 <code>data_source eq ENCODE and biosample like lung and feature neq histone modification</code>
 
