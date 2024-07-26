@@ -1,0 +1,780 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "NIAGADS API",
+      "summary": "NIAGADS API",
+      "description": "an application programming interface (API) that provides programmatic access to Open-Access resources at the NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+      "termsOfService": "http://example.com/terms/",
+      "contact": {
+        "name": "NIAGADS Support",
+        "email": "help@niagads.org"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "/api"
+      }
+    ],
+    "paths": {
+      "/filer/": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository"
+          ],
+          "summary": "About",
+          "description": "about the FILER Functional Genomics Repository",
+          "operationId": "about_filer__get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            }
+          }
+        }
+      },
+      "/filer/track/record/{track}": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "Record(s) by ID",
+            "Track Metadata by ID"
+          ],
+          "summary": "Get Track Metadata",
+          "description": "retrieve metadata for the functional genomics `track` specified in the path",
+          "operationId": "Get_track_metadata_filer_track_record__track__get",
+          "parameters": [
+            {
+              "name": "track",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "FILER track identifier",
+                "title": "Track"
+              },
+              "description": "FILER track identifier"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/filer/track/record": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "Record(s) by ID",
+            "Track Metadata by ID"
+          ],
+          "summary": "Get Metadata For Multiple Tracks",
+          "description": "retrieve metadata for one or more functional genomics tracks from FILER",
+          "operationId": "Get_metadata_for_multiple_tracks_filer_track_record_get",
+          "parameters": [
+            {
+              "name": "track",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "comma separated list of one or more FILER track identifiers",
+                "title": "Track"
+              },
+              "description": "comma separated list of one or more FILER track identifiers"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/filer/track/data/{track}": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "Track Data by ID"
+          ],
+          "summary": "Get Track Data",
+          "description": "retrieve functional genomics track data from FILER in the specified region",
+          "operationId": "Get_track_data_filer_track_data__track__get",
+          "parameters": [
+            {
+              "name": "track",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "FILER track identifier",
+                "title": "Track"
+              },
+              "description": "FILER track identifier"
+            },
+            {
+              "name": "loc",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end",
+                "examples": [
+                  "chr19:10000-40000",
+                  "19:10000-40000"
+                ],
+                "title": "Loc"
+              },
+              "description": "genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/filer/track/data": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "Track Data by ID"
+          ],
+          "summary": "Get Data From Multiple Tracks",
+          "description": "retrieve data from one or more functional genomics tracks from FILER in the specified region",
+          "operationId": "Get_data_from_multiple_tracks_filer_track_data_get",
+          "parameters": [
+            {
+              "name": "track",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "comma separated list of one or more FILER track identifiers",
+                "title": "Track"
+              },
+              "description": "comma separated list of one or more FILER track identifiers"
+            },
+            {
+              "name": "loc",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end",
+                "examples": [
+                  "chr19:10000-40000",
+                  "19:10000-40000"
+                ],
+                "title": "Loc"
+              },
+              "description": "genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/filer/query/tracks": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "Record(s) by Text Search",
+            "Track Metadata by Text Search"
+          ],
+          "summary": "Track Metadata Text Search",
+          "description": "find functional genomics tracks using category filters or by a keyword search againts all text fields in the track metadata",
+          "operationId": "Track_Metadata_Text_Search_filer_query_tracks_get",
+          "parameters": [
+            {
+              "name": "keyword",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "search all text fields by keyword",
+                "title": "Keyword"
+              },
+              "description": "search all text fields by keyword"
+            },
+            {
+              "name": "assembly",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Assembly"
+                  }
+                ],
+                "description": "reference genome build (assembly)",
+                "default": "GRCh38",
+                "title": "Assembly"
+              },
+              "description": "reference genome build (assembly)"
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "description": "filter expresssion string",
+                "examples": [
+                  "data_source eq GTEx and biosample eq brain"
+                ],
+                "title": "Filter"
+              },
+              "description": "filter expresssion string"
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "maximum number of results to return; please note that `pagination is not yet implemented`",
+                "default": 50,
+                "title": "Limit"
+              },
+              "description": "maximum number of results to return; please note that `pagination is not yet implemented`"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "current page; please note that `pagination is not yet implemented`",
+                "title": "Page"
+              },
+              "description": "current page; please note that `pagination is not yet implemented`"
+            },
+            {
+              "name": "countOnly",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "return result size (count) only",
+                "default": false,
+                "title": "Countonly"
+              },
+              "description": "return result size (count) only"
+            },
+            {
+              "name": "idsOnly",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "return only the IDS (no annotation or metadata) for matching records",
+                "default": false,
+                "title": "Idsonly"
+              },
+              "description": "return only the IDS (no annotation or metadata) for matching records"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/filer/query/region": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "Record(s) by Text Search",
+            "Track Metadata by Text Search"
+          ],
+          "summary": "Get Data From Tracks Meeting Search Criteria",
+          "description": "retrieve data in a region of interest from all functional genomics tracks whose metadata meets the search or filter criteria",
+          "operationId": "Get_Data_from_Tracks_meeting_Search_Criteria_filer_query_region_get",
+          "parameters": [
+            {
+              "name": "keyword",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "search all text fields by keyword",
+                "title": "Keyword"
+              },
+              "description": "search all text fields by keyword"
+            },
+            {
+              "name": "assembly",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Assembly"
+                  }
+                ],
+                "description": "reference genome build (assembly)",
+                "default": "GRCh38",
+                "title": "Assembly"
+              },
+              "description": "reference genome build (assembly)"
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "description": "filter expresssion string",
+                "examples": [
+                  "data_source eq GTEx and biosample eq brain"
+                ],
+                "title": "Filter"
+              },
+              "description": "filter expresssion string"
+            },
+            {
+              "name": "loc",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end",
+                "examples": [
+                  "chr19:10000-40000",
+                  "19:10000-40000"
+                ],
+                "title": "Loc"
+              },
+              "description": "genomic region to query; for a chromosome, N, please specify as chrN:start-end or N:start-end"
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "maximum number of results to return; please note that `pagination is not yet implemented`",
+                "default": 50,
+                "title": "Limit"
+              },
+              "description": "maximum number of results to return; please note that `pagination is not yet implemented`"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "current page; please note that `pagination is not yet implemented`",
+                "title": "Page"
+              },
+              "description": "current page; please note that `pagination is not yet implemented`"
+            },
+            {
+              "name": "countOnly",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "return result size (count) only",
+                "default": false,
+                "title": "Countonly"
+              },
+              "description": "return result size (count) only"
+            },
+            {
+              "name": "idsOnly",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "return only the IDS (no annotation or metadata) for matching records",
+                "default": false,
+                "title": "Idsonly"
+              },
+              "description": "return only the IDS (no annotation or metadata) for matching records"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/filer/query/filter": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "API Helper",
+            "Data Summary"
+          ],
+          "summary": "Helper: Allowable Filter Fields",
+          "description": "get list of allowable fields for filter-based searches of FILER track metadata",
+          "operationId": "Helper__Allowable_Filter_Fields_filer_query_filter_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            }
+          }
+        }
+      },
+      "/filer/query/filter/{field}": {
+        "get": {
+          "tags": [
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "FILER Functional Genomics Repository",
+            "API Helper",
+            "Data Summary"
+          ],
+          "summary": "Helper: Filter Field Values",
+          "description": "get list of values and associated FILER track counts for each allowable filter field",
+          "operationId": "Helper__Filter_Field_Values_filer_query_filter__field__get",
+          "parameters": [
+            {
+              "name": "field",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "filter field; please note that there are too many possible values for `biosample`; the returned result summarizes over broad `tissue categories` only",
+                "enum": [
+                  "biosample",
+                  "antibody",
+                  "assay",
+                  "feature",
+                  "analysis",
+                  "classification",
+                  "category",
+                  "data_source"
+                ],
+                "title": "Field"
+              },
+              "description": "filter field; please note that there are too many possible values for `biosample`; the returned result summarizes over broad `tissue categories` only"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/": {
+        "get": {
+          "summary": "Read Root",
+          "operationId": "read_root__get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Assembly": {
+          "type": "string",
+          "enum": [
+            "GRCh37",
+            "GRCh38",
+            "hg19",
+            "hg38"
+          ],
+          "title": "Assembly",
+          "description": "enum for genome builds"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      }
+    }
+  }
