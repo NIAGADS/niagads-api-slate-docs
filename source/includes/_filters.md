@@ -2,7 +2,7 @@
 
 <code>/query</code> endpoints take an optional <code>filter</code> parameter that accepts boolean text expressions in the following format:
 
-<code>\<<em>field</em>\> \<<em>operator</em>\> \<<em>test_condition</em>\>
+<code>\<<em>field</em>\> \<<em>operator</em>\> \<<em>test_condition</em>\></code>
 
 <aside class="success">Keywords (operators, logical conjunctions, and field names) in text expressions are <strong>case-sensitive</strong>.</aside>
 
@@ -24,7 +24,6 @@ Each knowledgebase provides a <em>Helper</em> <code>/query/filter</code> endpoin
 
 Filter expressions can be combind using the logical conjunction operator <code>and</code>. For example:
 
-> data_source eq ENCODE and biosample like lung
-
+<code>data_source eq ENCODE and biosample like lung and feature neq histone modification</code>
 
 <aside class="notice">Currently only <code>and</code> expressions are supported.  Support for logical <code>or</code> is coming soon.</aside>
